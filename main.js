@@ -1,24 +1,33 @@
 async function loadData() {
-  const data = await d3.csv("data.csv");
+  const rawData = await d3.csv("data.csv");
   // console.log(data);
 
-  const colorConvert = data.map((x) => {
-    let cmyk = x.color.split(",").map((c) => c.trim());
-    let converted = cmykToRgb(
-      cmyk[0] / 100,
-      cmyk[1] / 100,
-      cmyk[2] / 100,
-      cmyk[3] / 100
-    );
-    return {
-      ...x,
-      converted,
-    };
-  });
+  const data = rawData
+    .map((x) => {
+      let cmyk = x.color.split(",").map((c) => c.trim());
+      let converted = cmykToRgb(
+        cmyk[0] / 100,
+        cmyk[1] / 100,
+        cmyk[2] / 100,
+        cmyk[3] / 100
+      );
 
-  console.log(colorConvert);
-  //const xAccessor = d => d.brightness
-  //const yAccessor = d => d.saturation
+      const convertToHsl = RGBToHSL(converted.r, converted.g, converted.b);
+      const finalColor = d3.hsl(convertToHsl);
+      return {
+        ...x,
+        converted,
+        finalColor,
+        convertToHsl,
+      };
+    })
+    .sort((a, b) => {
+      return b.finalColor.h - a.finalColor.h;
+    });
+
+  console.log(data);
+  const xAccessor = (d) => d.finalColor.s;
+  const yAccessor = (d) => d.finalColor.l;
 
   const width = d3.min([window.innerWidth * 0.9, window.innerHeight * 0.9]);
 
@@ -38,29 +47,73 @@ async function loadData() {
   dimensions.boundedHeight =
     dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
-  const wrapper = d3
-    .select("#wrapper")
+  const chart = d3
+    .select("#chart")
     .append("svg")
     .attr("width", dimensions.width)
     .attr("height", dimensions.height);
 
-  const bounds = wrapper
+  const bounds = chart
     .append("g")
     .style(
       "transform",
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
-  const xScale = d3.scaleLinear();
-  const yScale = d3.scaleLinear();
+  const xScale = d3
+    .scaleLinear()
+    .domain([0, 1])
+    .range([0, dimensions.boundedWidth])
+    .nice();
+  const yScale = d3
+    .scaleLinear()
+    .domain([0, 1])
+    .range([dimensions.boundedHeight, 0])
+    .nice();
 
-  bounds
-    .append("rect")
-    .attr("x", dimensions.boundedHeight / 2)
-    .attr("y", dimensions.boundedHeight / 2);
+  const squares = bounds.selectAll("rect").data(data);
+
+  squares
+    .join("rect")
+    .attr("transform", (d) => {
+      if (!d.finalColor.s || !d.finalColor.l) return;
+      return `translate(${xScale(xAccessor(d))} ${yScale(yAccessor(d))})`;
+    })
+    .attr("width", 6)
+    .attr("height", 6)
+    .style("fill", (d) => d.finalColor);
+
+  const xAxisGenerator = d3.axisBottom().scale(xScale);
+
+  const xAxis = bounds
+    .append("g")
+    .call(xAxisGenerator)
+    .style("transform", `translateY(${dimensions.boundedHeight}px)`);
+
+  const xAxisLabel = xAxis
+    .append("text")
+    .attr("x", dimensions.boundedWidth / 2)
+    .attr("y", dimensions.margin.bottom - 10)
+    .attr("fill", "black")
+    .style("font-size", "1.4em")
+    .html("Saturation");
+
+  const yAxisGenerator = d3.axisLeft().scale(yScale).ticks(10);
+  const yAxis = bounds.append("g").call(yAxisGenerator);
+
+  const yAxisLabel = yAxis
+    .append("text")
+    .attr("x", -dimensions.boundedHeight / 2)
+    .attr("y", -dimensions.margin.left + 10)
+    .attr("fill", "black")
+    .style("font-size", "1.4em")
+    .text("Luminosity")
+    .style("transform", "rotate(-90deg)")
+    .style("text-anchor", "middle");
 }
 
 loadData();
 
+// utilities
 // https://www.w3schools.com/colors/colors_converter.asp
 function cmykToRgb(c, m, y, k) {
   var r, g, b;
@@ -68,4 +121,45 @@ function cmykToRgb(c, m, y, k) {
   g = 255 - Math.min(1, m * (1 - k) + k) * 255;
   b = 255 - Math.min(1, y * (1 - k) + k) * 255;
   return { r: Math.floor(r), g: Math.floor(g), b: Math.floor(b) };
+}
+//https://css-tricks.com/converting-color-spaces-in-javascript/
+function RGBToHSL(r, g, b) {
+  // Make r, g, and b fractions of 1
+  r /= 255;
+  g /= 255;
+  b /= 255;
+
+  // Find greatest and smallest channel values
+  let cmin = Math.min(r, g, b),
+    cmax = Math.max(r, g, b),
+    delta = cmax - cmin,
+    h = 0,
+    s = 0,
+    l = 0;
+  // Calculate hue
+  // No difference
+  if (delta == 0) h = 0;
+  // Red is max
+  else if (cmax == r) h = ((g - b) / delta) % 6;
+  // Green is max
+  else if (cmax == g) h = (b - r) / delta + 2;
+  // Blue is max
+  else h = (r - g) / delta + 4;
+
+  h = Math.round(h * 60);
+
+  // Make negative hues positive behind 360°
+  if (h < 0) h += 360;
+
+  // Calculate lightness
+  l = (cmax + cmin) / 2;
+
+  // Calculate saturation
+  s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+
+  // Multiply l and s by 100
+  s = +(s * 100).toFixed(1);
+  l = +(l * 100).toFixed(1);
+
+  return "hsl(" + h + "," + s + "%," + l + "%)";
 }
