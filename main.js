@@ -29,14 +29,14 @@ async function loadData() {
   const xAccessor = (d) => d.finalColor.s;
   const yAccessor = (d) => d.finalColor.l;
 
-  const width = d3.min([window.innerWidth * 0.9, window.innerHeight * 0.9]);
+  const width = d3.min([window.innerWidth * 0.975, window.innerHeight * 0.975]);
 
   let dimensions = {
     width: width,
     height: width,
     margin: {
       top: 10,
-      right: 10,
+      right: 20,
       bottom: 50,
       left: 50,
     },
@@ -72,16 +72,54 @@ async function loadData() {
 
   const squares = bounds.selectAll("rect").data(data);
 
+  const tooltip = d3.select(".tooltip");
+
   squares
     .join("rect")
     .attr("transform", (d) => {
       if (!d.finalColor.s || !d.finalColor.l) return;
+      console.log(d.finalColor.l);
       return `translate(${xScale(xAccessor(d))} ${yScale(yAccessor(d))})`;
     })
-    .attr("width", 6)
-    .attr("height", 6)
-    .style("fill", (d) => d.finalColor);
+    .attr("width", 10)
+    .attr("height", 10)
+    .attr("data-color", (d) => d.finalColor.l)
+    .style("fill", (d) => d.finalColor)
+    .style("stroke", "#fff")
+    .style("stroke-width", 0.5)
+    .attr("class", (d) => {
+      console.log(d.category);
+      return `square ${d.category}`;
+    })
+    .on("mouseenter", function (event, d) {
+      // bounds.selectAll(".square").style("opacity", 0.3);
+      // d3.select(this).style("border-color", (d) => d.finalColor);
+      showTooltip(d, event);
+    })
+    .on("mouseleave", () => {
+      // bounds.selectAll(".square").style("opacity", 1);
+      hideTooltip();
+    });
 
+  function showTooltip(d, event) {
+    const { clientX, clientY } = event;
+    console.log(d);
+    const { topic, name, color, page, category, convertToHsl } = d;
+    tooltip
+      .style("opacity", 1)
+      .style("border-color", convertToHsl)
+      .style("left", `${clientX - 100}px`)
+      .style("top", `${clientY + 50}px`).html(`<div>${topic}</div>
+      
+      <div>${name}</div>
+      <div>${color}</div>
+      <div>${page}</div>
+      <div>${category}</div>
+      `);
+  }
+  let hideTooltip = () => tooltip.style("opacity", 0);
+
+  //Axis
   const xAxisGenerator = d3.axisBottom().scale(xScale);
 
   const xAxis = bounds
@@ -93,7 +131,7 @@ async function loadData() {
     .append("text")
     .attr("x", dimensions.boundedWidth / 2)
     .attr("y", dimensions.margin.bottom - 10)
-    .attr("fill", "black")
+    .attr("fill", "#eee")
     .style("font-size", "1.4em")
     .html("Saturation");
 
@@ -104,11 +142,24 @@ async function loadData() {
     .append("text")
     .attr("x", -dimensions.boundedHeight / 2)
     .attr("y", -dimensions.margin.left + 10)
-    .attr("fill", "black")
+    .attr("fill", "#eee")
     .style("font-size", "1.4em")
-    .text("Luminosity")
+    .text("Lightness")
     .style("transform", "rotate(-90deg)")
     .style("text-anchor", "middle");
+
+  // labels
+  document.querySelectorAll(".label-wrapper div").forEach((label) => {
+    label.addEventListener("mouseenter", (e) => {
+      let category = e.target.dataset.cat;
+
+      bounds.selectAll(".square").style("opacity", 0.1);
+      bounds.selectAll(`.${category}`).style("opacity", 1);
+    });
+    label.addEventListener("mouseout", () => {
+      bounds.selectAll(".square").style("opacity", 1);
+    });
+  });
 }
 
 loadData();
