@@ -112,9 +112,9 @@ async function loadData() {
       .style("top", `${clientY + 50}px`).html(`<div>${topic}</div>
       
       <div>${name}</div>
-      <div>${color}</div>
-      <div>${page}</div>
-      <div>${category}</div>
+      <div>CMYK: ${color}</div>
+      <div>Page Number: ${page}</div>
+      <div>Category: ${category}</div>
       `);
   }
   let hideTooltip = () => tooltip.style("opacity", 0);

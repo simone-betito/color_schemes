@@ -10,6 +10,17 @@ body {
   color: #eee;
 }
 
+a {
+  color: #eee;
+}
+
+h1 {
+  max-width: 810px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 5px;
+}
+
 .chart-container {
   margin: 100px auto 50px auto;
   width: 100%;
@@ -34,6 +45,10 @@ body {
   transition: 0.3s ease-in-out all;
 }
 
+.label-wrapper > div:hover {
+  background: #ccc;
+}
+
 .tooltip {
   position: fixed;
   z-index: 2;
@@ -43,7 +58,8 @@ body {
   pointer-events: none;
   padding: 10px;
   font-family: sans-serif;
-  border: 1px solid transparent;
+  opacity: 0;
+  border: 1.5px solid transparent;
 }
 
 footer {
