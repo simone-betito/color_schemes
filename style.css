@@ -16,13 +16,13 @@ a {
 
 h1 {
   max-width: 810px;
-  margin: 0 auto;
+  margin: 30px auto 0px auto;
   text-align: center;
-  padding: 10px 5px;
+  /* padding: 10px 5px; */
 }
 
 .chart-container {
-  margin: 100px auto 50px auto;
+  margin: 30px auto 50px auto;
   width: 100%;
   text-align: center;
   display: flex;
@@ -32,6 +32,7 @@ h1 {
 
 .label-wrapper {
   display: flex;
+  margin-bottom: 20px;
 }
 
 .label-wrapper > div {
@@ -60,6 +61,9 @@ h1 {
   font-family: sans-serif;
   opacity: 0;
   border: 1.5px solid transparent;
+}
+
+.nameOfObject {
 }
 
 footer {

@@ -111,13 +111,19 @@ async function loadData() {
       .style("left", `${clientX - 100}px`)
       .style("top", `${clientY + 50}px`).html(`<div>${topic}</div>
       
-      <div>${name}</div>
+      <div class="nameOfObject">${name}</div>
       <div>CMYK: ${color}</div>
       <div>Page Number: ${page}</div>
-      <div>Category: ${category}</div>
+      <div>Category: ${catName[category]}</div>
       `);
   }
   let hideTooltip = () => tooltip.style("opacity", 0);
+
+  const catName = {
+    "art-history": "Art History",
+    "contemporary-art": "Contemporary Art",
+    "pop-culture": "Pop Culture",
+  };
 
   //Axis
   const xAxisGenerator = d3.axisBottom().scale(xScale);
