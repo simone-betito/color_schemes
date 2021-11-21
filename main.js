@@ -112,7 +112,7 @@ async function loadData() {
       .style("top", `${clientY + 50}px`).html(`<div>${topic}</div>
       
       <div class="nameOfObject">${name}</div>
-      <div>CMYK: ${color}</div>
+      <div class="cmyk">CMYK: ${color}</div>
       <div>Page Number: ${page}</div>
       <div>Category: ${catName[category]}</div>
       `);
