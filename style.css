@@ -61,13 +61,23 @@ h1 {
   color: #fff;
   pointer-events: none;
   padding: 10px;
-  font-family: sans-serif;
-  font-size: 12px;
+  font-family: "Playfair Display", serif;
+  text-align: left;
+  font-size: 10px;
   opacity: 0;
-  border: 1.5px solid transparent;
+  border: 2px solid transparent;
+}
+
+.topic {
+  font-size: 12px;
+  /* text-align: center; */
 }
 
 .nameOfObject {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 12px;
+  /* text-align: center; */
 }
 
 .cmyk {
