@@ -135,6 +135,7 @@ async function loadData() {
     .attr("x", dimensions.boundedWidth / 2)
     .attr("y", dimensions.margin.bottom - 10)
     .attr("fill", "#eee")
+    .style("font-family", "playfair display")
     .style("font-size", "1.4em")
     .html("Saturation");
 
@@ -148,6 +149,7 @@ async function loadData() {
     .attr("fill", "#eee")
     .style("font-size", "1.4em")
     .text("Lightness")
+    .style("font-family", "playfair display")
     .style("transform", "rotate(-90deg)")
     .style("text-anchor", "middle");
 
