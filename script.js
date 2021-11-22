@@ -1,6 +1,6 @@
 async function loadData() {
   const rawData = await d3.csv("data.csv");
-  console.log(data);
+  // console.log(rawData);
 
   const data = rawData
     .map((x) => {
