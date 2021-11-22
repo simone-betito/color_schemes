@@ -92,7 +92,7 @@ Caravaggio's Boy with a Basket of Fruit,Red grapes,"31, 100, 97, 41",42,art-hist
 "The yellow bills in John James Audubon's , The Birds of America","Plate 431, American Flamingo","0, 4, 31, 0",44,art-history
 "The yellow bills in John James Audubon's , The Birds of America","Plate 2n, Great Blue Heron","3, 3, 60, 0",44,art-history
 "The yellow bills in John James Audubon's , The Birds of America","Plate 217, Louisiana Heron","3, 6, 41, 0",44,art-history
-"The yellow bills in John James Audubon's , The Birds of America","Plate 221, Mallard Duck","0, 8, 7 1, 0",44,art-history
+"The yellow bills in John James Audubon's , The Birds of America","Plate 221, Mallard Duck","0, 8, 71, 0",44,art-history
 "The yellow bills in John James Audubon's , The Birds of America","Plate 224, Kittiwake Gull","3, 3, 62, 0",44,art-history
 "The yellow bills in John James Audubon's , The Birds of America","Plate 242, Snowy Heron, or White Egret","3, 4, 79, 0",44,art-history
 "The yellow bills in John James Audubon's , The Birds of America","Plate 71, Winter Hawk","6, 17, 79, 0",44,art-history
@@ -302,7 +302,7 @@ The paint on Kerry James Marshall's smocks,"Untitled (Painter), 2008","45, 41, 1
 The paint on Kerry James Marshall's smocks,"Untitled (Painter), 2008","43, 17, 45, 0",88,contemporary-art
 The paint on Kerry James Marshall's smocks,"Untitled (Painter), 2008","54, 27, 8, 0",88,contemporary-art
 The paint on Kerry James Marshall's smocks,"Untitled (Studio), 2014","46, 20, 31, 0",88,contemporary-art
-The paint on Kerry James Marshall's smocks,"Untitled (Studio), 2014","63, 43 41 9",88,contemporary-art
+The paint on Kerry James Marshall's smocks,"Untitled (Studio), 2014","63, 43, 41, 9",88,contemporary-art
 The paint on Kerry James Marshall's smocks,"Untitled (Studio), 2014","84, 58, 49, 31",88,contemporary-art
 The paint on Kerry James Marshall's smocks,"Untitled (Painter), 2008","15, 31, 28, 0",88,contemporary-art
 The paint on Kerry James Marshall's smocks,"Untitled (Painter), 2008","17, 11, 11, 0",88,contemporary-art
@@ -353,9 +353,9 @@ John Currin's blondes,"The Scream, 2010","11, 11, 31, 0",94,contemporary-art
 John Currin's blondes,"Girl in Bed, 1993","33, 46, 100, 11",94,contemporary-art
 "The letter ""E"" in Mel Bochner's paintings","""Observe,"" If the Color Changes, 2001","31, 61, 50, 7",96,contemporary-art
 "The letter ""E"" in Mel Bochner's paintings","""Iciness,"" Indifference, 2003","49, 13, 100 , 0",96,contemporary-art
-"The letter ""E"" in Mel Bochner's paintings","""Cheesy,"" Vulgar, 2004","7 5, 24, 32, 0",96,contemporary-art
+"The letter ""E"" in Mel Bochner's paintings","""Cheesy,"" Vulgar, 2004","75, 24, 32, 0",96,contemporary-art
 "The letter ""E"" in Mel Bochner's paintings","""Chiper"" Nothing/Nothing, 2006","25, 12, 14, 0",96,contemporary-art
-"The letter ""E"" in Mel Bochner's paintings","""Debauched,"" ""Obscene/Money, 2006","28, 6 00",96,contemporary-art
+"The letter ""E"" in Mel Bochner's paintings","""Debauched,"" ""Obscene/Money, 2006","28, 6, 0, 0",96,contemporary-art
 "The letter ""E"" in Mel Bochner's paintings","""Cheddar,"" Money, 2007","78, 23, 10, 0",96,contemporary-art
 "The letter ""E"" in Mel Bochner's paintings","""Scoundrel,"" Scoundrel, 2010","7, 28, 23, 0",96,contemporary-art
 "The letter ""E"" in Mel Bochner's paintings","""Sleazebag,"" Scoundrel, 2011","13, 44, 6, 0",96,contemporary-art
@@ -419,7 +419,7 @@ Paul Thomas Anderson's oeuvre,Chick Planet Massage,"74, 88, 43, 45",112,pop-cult
 "Craig Sager's suits, in chronological order over the course of his sportscasting career","Chicago Bulls vs. Miami Heat, May 24, 2011 ","3, 69, 40, 0",114,pop-culture
 "Craig Sager's suits, in chronological order over the course of his sportscasting career","Miami Heat vs. Chicago Bulls, April 12, 2012"," 7, 62, 90, 0",114,pop-culture
 "Craig Sager's suits, in chronological order over the course of his sportscasting career","Los Angeles Lakers vs. Denver Nuggets, May 6, 2012","33, 0, 21, 0",114,pop-culture
-"Craig Sager's suits, in chronological order over the course of his sportscasting career","Denver Nuggets vs. Los Angeles Lakers, May 8, 2012","6 7, 39, 0, 0",114,pop-culture
+"Craig Sager's suits, in chronological order over the course of his sportscasting career","Denver Nuggets vs. Los Angeles Lakers, May 8, 2012","67, 39, 0, 0",114,pop-culture
 "Craig Sager's suits, in chronological order over the course of his sportscasting career","NBA Draft,June 28, 2012","14, 91, 17, 0",114,pop-culture
 "Craig Sager's suits, in chronological order over the course of his sportscasting career","NBA All-Star Weekend, Houston, February 16, 2013","69, 1, 19, 0",114,pop-culture
 "Craig Sager's suits, in chronological order over the course of his sportscasting career","Oklahoma City Thunder vs. Golden State Warriors, April 11, 2013 ","19, 22, 38, 0",114,pop-culture
@@ -454,7 +454,7 @@ Paul Thomas Anderson's oeuvre,Chick Planet Massage,"74, 88, 43, 45",112,pop-cult
 "Walt Frazier's suits, in chronological order over the course of his sportscasting career","New York Knicks vs. Los Angeles Clippers, March 24, 2019","32, 99, 70, 36",116,pop-culture
 "Walt Frazier's suits, in chronological order over the course of his sportscasting career","New York Knicks vs. Los Angeles Lakers, March 17, 2019","84, 54, 60, 44",116,pop-culture
 "Walt Frazier's suits, in chronological order over the course of his sportscasting career","Cleveland Cavaliers vs. New York Knicks, February 3, 2020","22, 82, 100, 13",116,pop-culture
-"Walt Frazier's suits, in chronological order over the course of his sportscasting career","Houston Rockets vs. New York Knicks, February 24, 2020","24, 100, 100",116,pop-culture
+"Walt Frazier's suits, in chronological order over the course of his sportscasting career","Houston Rockets vs. New York Knicks, February 24, 2020","24, 100, 100, 22",116,pop-culture
 "Dennis Rodman's hair dye, in chronological order over the course of his NBA career","San Antonio Spurs vs. Washington Bullets, December 30, 1994","9, 35, 100, 0",118,pop-culture
 "Dennis Rodman's hair dye, in chronological order over the course of his NBA career","San Antonio Spurs vs. New York Knicks, October 18, 1994","10, 100, 55, 0",118,pop-culture
 "Dennis Rodman's hair dye, in chronological order over the course of his NBA career","San Antonio Spurs vs. Denver Nuggets,January 28, 1995","25, 100, 61, 15",118,pop-culture
