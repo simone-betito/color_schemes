@@ -78,7 +78,6 @@ async function loadData() {
     .join("rect")
     .attr("transform", (d) => {
       if (!d.finalColor.s || !d.finalColor.l) return;
-      console.log(d.finalColor.l);
       return `translate(${xScale(xAccessor(d))} ${yScale(yAccessor(d))})`;
     })
     .attr("width", 10)
@@ -88,7 +87,6 @@ async function loadData() {
     .style("stroke", "#fff")
     .style("stroke-width", 0.5)
     .attr("class", (d) => {
-      console.log(d.category);
       return `square ${d.category}`;
     })
     .on("mouseenter", function (event, d) {
@@ -103,7 +101,6 @@ async function loadData() {
 
   function showTooltip(d, event) {
     const { clientX, clientY } = event;
-    console.log(d);
     const { topic, name, color, page, category, convertToHsl } = d;
     tooltip
       .style("opacity", 1)
@@ -170,6 +167,36 @@ async function loadData() {
 
 loadData();
 
+const title = document.querySelector("h1 span");
+const titleText = "Color Scheme";
+titleText.split("").forEach((x, i) => {
+  title.innerHTML += `<span style="color: ${generateColor()}">${x}</span>`;
+});
+
+function generateColor() {
+  let colorSet = [
+    "pink",
+    "#b69034",
+    "poppy",
+    "#c6e8c9",
+    "orange",
+    "#c2c2c2",
+    "coral",
+    "teal",
+    "#e9bd53",
+    "#a091dd",
+    "#db93c9",
+    "#48def2",
+    "#f3de61",
+    "#7a5eee",
+    "#ccc3ec",
+    "#e26069",
+    "#a0c1f7",
+    "#c1d6ad",
+  ];
+  let colorAccess = Math.floor(Math.random() * colorSet.length);
+  return colorSet[colorAccess];
+}
 // utilities
 // https://www.w3schools.com/colors/colors_converter.asp
 function cmykToRgb(c, m, y, k) {
