@@ -89,7 +89,7 @@ async function loadData() {
     .attr("class", (d) => {
       return `square ${d.category}`;
     })
-    .on("mouseenter", function (event, d) {
+    .on("mouseover", function (event, d) {
       // bounds.selectAll(".square").style("opacity", 0.3);
       // d3.select(this).style("border-color", (d) => d.finalColor);
       showTooltip(d, event);
@@ -161,7 +161,7 @@ async function loadData() {
       bounds.selectAll(".square").style("opacity", 0.1);
       bounds.selectAll(`.${category}`).style("opacity", 1);
     });
-    label.addEventListener("mouseout", () => {
+    label.addEventListener("mouseleave", () => {
       bounds.selectAll(".square").style("opacity", 1);
     });
   });
