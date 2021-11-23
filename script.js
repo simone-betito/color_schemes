@@ -1,3 +1,9 @@
+const catName = {
+  "art-history": "Art History",
+  "contemporary-art": "Contemporary Art",
+  "pop-culture": "Pop Culture",
+};
+
 async function loadData() {
   const rawData = await d3.csv("data.csv");
   // console.log(rawData);
@@ -72,8 +78,6 @@ async function loadData() {
 
   const squares = bounds.selectAll("rect").data(data);
 
-  const tooltip = d3.select(".tooltip");
-
   squares
     .join("rect")
     .attr("transform", (d) => {
@@ -92,35 +96,12 @@ async function loadData() {
     .on("mouseover", function (event, d) {
       // bounds.selectAll(".square").style("opacity", 0.3);
       // d3.select(this).style("border-color", (d) => d.finalColor);
-      showTooltip(d, event);
+      return showTooltip(d, event);
     })
     .on("mouseleave", () => {
       // bounds.selectAll(".square").style("opacity", 1);
-      hideTooltip();
+      return hideTooltip();
     });
-
-  function showTooltip(d, event) {
-    const { clientX, clientY } = event;
-    const { topic, name, color, page, category, convertToHsl } = d;
-    tooltip
-      .style("opacity", 1)
-      .style("border-color", convertToHsl)
-      .style("left", `${clientX - 100}px`)
-      .style("top", `${clientY + 50}px`).html(`
-      <div class="topic">${topic}</div>
-      <div class="nameOfObject">${name}</div>
-      <div class="cmyk"><b>CMYK:</b> ${color}</div>
-      <div><b>Page Number:</b> ${page}</div>
-      <div><b>Category:</b> ${catName[category]}</div>
-      `);
-  }
-  let hideTooltip = () => tooltip.style("opacity", 0);
-
-  const catName = {
-    "art-history": "Art History",
-    "contemporary-art": "Contemporary Art",
-    "pop-culture": "Pop Culture",
-  };
 
   //Axis
   const xAxisGenerator = d3.axisBottom().scale(xScale);
@@ -155,7 +136,7 @@ async function loadData() {
 
   // labels
   document.querySelectorAll(".label-wrapper div").forEach((label) => {
-    label.addEventListener("mouseenter", (e) => {
+    label.addEventListener("mouseover", (e) => {
       let category = e.target.dataset.cat;
 
       bounds.selectAll(".square").style("opacity", 0.1);
@@ -166,6 +147,25 @@ async function loadData() {
     });
   });
 }
+
+const tooltip = d3.select(".tooltip");
+
+function showTooltip(d, event) {
+  const { clientX, clientY } = event;
+  const { topic, name, color, page, category, convertToHsl } = d;
+  tooltip
+    .style("opacity", 1)
+    .style("border-color", convertToHsl)
+    .style("left", `${clientX - 100}px`)
+    .style("top", `${clientY + 50}px`).html(`
+    <div class="topic">${topic}</div>
+    <div class="nameOfObject">${name}</div>
+    <div class="cmyk"><b>CMYK:</b> ${color}</div>
+    <div><b>Page Number:</b> ${page}</div>
+    <div><b>Category:</b> ${catName[category]}</div>
+    `);
+}
+let hideTooltip = () => tooltip.style("opacity", 0);
 
 loadData();
 
